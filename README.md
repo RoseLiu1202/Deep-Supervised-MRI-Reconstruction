@@ -5,42 +5,42 @@ This project is created by Weijie Gan and Yuyang Hu for students to explores MRI
 ## Project Description
 
 ### Background
-Magnetic Resonance Imaging (MRI) reconstruction is an inverse problem where the task is to recover an image \(x \in \mathbb{C}^n\) from noisy measurements \(y \in \mathbb{C}^n\). This relationship is represented by the equation:
+Magnetic Resonance Imaging (MRI) reconstruction is an inverse problem where the task is to recover an image (x) from noisy measurements (y). The relationship is described by the equation:
 
-\[ y = PFx + e \]
+    y = P * F * x + e
 
-where:
-- \(F \in \mathbb{C}^{n \times n}\) represents the Fourier transform,
-- \(P \in \mathbb{C}^{n \times n}\) is a sampling operator,
-- \(e \in \mathbb{C}^{n \times n}\) is noise.
+Where:
+- F represents the Fourier transform,
+- P is a sampling operator,
+- e is noise.
 
-Deep learning techniques, specifically Convolutional Neural Networks (CNNs), are utilized to reconstruct the MRI image by mapping zero-filled images to their ground truth counterparts using supervised learning.
+Deep learning techniques, specifically Convolutional Neural Networks (CNNs), are used to reconstruct the MRI image by mapping zero-filled images to their ground truth counterparts through supervised learning.
 
 ### Key Components:
 - **Supervised Learning for MRI Reconstruction:** A CNN model is trained to map zero-filled images to the original MRI images.
-- **Loss Function:** The learning model is trained using the following loss function:
+- **Loss Function:** The learning model is trained by minimizing the following loss function:
 
-\[ \frac{1}{N} \sum_{i=1}^{N} \| f_{\theta} ( \hat{x}_i ) - x_i \|^2_2 \]
+    (1/N) * sum(||f_theta(x_hat_i) - x_i||^2)
 
-where:
-  - \(f_{\theta}\) represents the CNN model,
-  - \(\hat{x}_i = F^{-1} y_i\) represents the zero-filled image, and
-  - \(x_i\) represents the ground truth.
+Where:
+  - f_theta is the CNN model,
+  - x_hat_i is the zero-filled image,
+  - x_i is the ground truth.
 
-- **Performance Metrics:** Model performance is evaluated based on Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index (SSIM), computed using the `scikit-image` library.
+- **Performance Metrics:** Model performance is evaluated using Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index (SSIM), computed with the `scikit-image` library.
 
 ### Project Workflow:
 1. **Data Preparation:**
-   - Download the dataset, extract the ground truth \(x_i\) and corresponding sampling mask \(P_i\).
-   - Obtain noisy measurements \(y_i\) and zero-filled images \(\hat{x}_i\).
+   - Download the dataset and extract the ground truth (x_i) and corresponding sampling mask (P_i).
+   - Obtain noisy measurements (y_i) and zero-filled images (x_hat_i).
    - Divide the dataset into training, validation, and test sets.
    
 2. **Model Training:**
-   - Train the CNN model using the supervised learning method, minimizing the loss function mentioned above.
+   - Train the CNN model using the supervised learning method, minimizing the loss function as described above.
    
 3. **Evaluation:**
    - Compute PSNR and SSIM for the reconstructed images on the testing dataset.
-   - Compare the zero-filled images, ground truth, and reconstructed images visually and quantitatively.
+   - Compare the zero-filled images, ground truth, and reconstructed images both visually and quantitatively.
 
 ### Results
 - Visual comparison of the ground truth, zero-filled, and reconstructed images.
